@@ -1,23 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Bootstrap 4 Horizontal Card</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <style>
 .bs-example {
 	margin: 20px;
@@ -38,8 +31,7 @@
 				<c:forEach var="chart" items="${charts}">
 					<div class="col-md-6 col-lg-4 my-3 card--items">
 						<div class="card ">
-							<img src="${chart.photo}" class="card-img-top mx-auto" alt=""
-								style="width: 200px;" />
+							<img src="${chart.photo}" class="card-img-top mx-auto" alt="" style="width: 200px;" />
 							<div class="card-header">${chart.ranking}위</div>
 							<div class="card-body">
 								<h5 class="card-title text-capitalize">${chart.title}</h5>
@@ -55,15 +47,17 @@
 
 				<c:forEach var="i" begin="1" end="17" step="1">
 
-					<li class="page-item"><a class="page-link"
-						onclick="page(${i})">${i}</a></li>
+					<li class="page-item"><a class="page-link" onclick="page(${i})">${i}</a></li>
 
 				</c:forEach>
 				<li class="page-item"><a class="page-link" href="#">Next</a></li>
 			</ul>
 		</div>
 	</div>
-	<script>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/W0M8kn_Ex-4
+	?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+		allowfullscreen=""></iframe>
+
 function page(num){
 
 	$.ajax({

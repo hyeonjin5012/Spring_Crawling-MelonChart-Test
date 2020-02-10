@@ -8,6 +8,6 @@ public interface MelonRepository {
 
 	List<Melon> findAll(int num);
 
-	int save(Melon responseMelonDto);
+	int save(Melon melon);
 
 }

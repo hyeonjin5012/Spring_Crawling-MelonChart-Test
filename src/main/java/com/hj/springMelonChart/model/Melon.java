@@ -12,4 +12,5 @@ public class Melon {
 	private String title;
 	private String singer;
 	private String photo;
+	private String musicLink;
 }

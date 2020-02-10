@@ -42,6 +42,13 @@ public class MelonController {
 	
 		return "melonChart";
 	}
+	@GetMapping("/music/{title}")
+	public String music(@PathVariable String title) {
+
+	melonService.melonMusic(title);
+	
+		return "melonChart";
+	}
 
 
 }

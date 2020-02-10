@@ -9,8 +9,8 @@
 	</select>
 	
 	<insert id="save">
-		insert into melon(ranking,title,singer,photo)
-		values(#{ranking},#{title},#{singer},#{photo})
+		insert into melon(ranking,title,singer,photo,musicLink)
+		values(#{ranking},#{title},#{singer},#{photo},#{musicLink)
 	</insert>
 
 </mapper>
