@@ -49,6 +49,12 @@ public class MelonController {
 	
 		return "melonChart";
 	}
+	@GetMapping("/test")
+	public String test(Model model) {
 
+	melonService.test();
+	
+		return "melonChart";
+	}
 
 }

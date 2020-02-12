@@ -1,9 +1,11 @@
 package com.hj.springMelonChart.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -29,6 +31,30 @@ public class MelonService {
 	}
 
 	@Transactional
+	public int test() {
+
+		String USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36";
+
+		try {
+			// 1. URL 선언
+			String connUrl = "https://www.youtube.com/results?search_query=이+노랜+꽤+오래된+거야+%28A+song+from+the+past%29MV";
+			// 2. HTML 가져오기
+			Connection conn = Jsoup.connect(connUrl).header("Content-Type", "application/json;charset=UTF-8")
+					.userAgent(USER_AGENT).method(Connection.Method.GET).ignoreContentType(true);
+			Document doc = conn.get();
+			// 3. 가져온 HTML Document 를 확인하기
+			System.out.println("test:" + doc.toString());
+
+		} catch (IOException e) {
+			// Exp : Connection Fail
+			e.printStackTrace();
+		}
+
+		return 0;
+
+	}
+
+	@Transactional
 	public int melonSave() {
 		int result = 0;
 		try {
@@ -41,7 +67,6 @@ public class MelonService {
 
 			for (Element el : singers_els) {
 				singer = el.select("span a").text();
-//				System.out.println(singer);
 				singers.add(singer);
 
 			}
@@ -60,34 +85,15 @@ public class MelonService {
 				title = title.replace(")", "%29");
 				title = title.replace(",", "%2C");
 
-				Document docYoutube = Jsoup.connect("https://www.youtube.com/results?search_query=" + title + "-MV")
-						.get();
+				Document docYoutube = Jsoup.connect("https://www.youtube.com/results?search_query=" + title + "-MV").get();
 				Elements musicVideoLink_el = docYoutube.select("h3.yt-lockup-title a");
 				String musicVideoLink = musicVideoLink_el.attr("href");
-//				Elements a = docYoutube.select("#thumbnail");
-//				String s = a.attr("href");
-//				System.out.println(s);
-				String musicLink = musicVideoLink.substring(musicVideoLink.indexOf("=") + 1, musicVideoLink.length());
-				if (musicLink.equals("")) {
-					musicLink = "널너러어ㅓ러";
-					String singer2 = singers.get(i);
-					singer2 = singer2.replace(" ", "+");
-					singer2 = singer2.replace("(", "%28");
-					singer2 = singer2.replace(")", "%29");
-					singer2 = singer2.replace(",", "%2C");
-					Document docYoutube2 = Jsoup
-							.connect("https://www.youtube.com/results?search_query=" + title + "+" + singer2).get();
-					Elements musicVideoLink_el2 = docYoutube.select("h3.yt-lockup-title a");
-					String musicVideoLink2 = musicVideoLink_el2.attr("href");
-					String musicLink2 = musicVideoLink2.substring(musicVideoLink.indexOf("=") + 1,
-							musicVideoLink2.length());
-					System.out.println(musicVideoLink2);
-					System.out.println("1:" + ranks.get(i + 1).text() + " : " + title + " : " + musicLink2);
 
-				} else {
-					System.out.println(musicVideoLink);
-					System.out.println("2:" + ranks.get(i + 1).text() + " : " + title + " : " + musicLink);
-				}
+				String musicLink = musicVideoLink.substring(musicVideoLink.indexOf("=") + 1, musicVideoLink.length());
+				melon.setMusicLink(musicLink);
+				System.out.println(musicVideoLink);
+				System.out.println("2:" + ranks.get(i + 1).text() + " : " + title + " : " + musicLink);
+				melonRepository.save(melon);
 
 			}
 

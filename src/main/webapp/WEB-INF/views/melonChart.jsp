@@ -32,7 +32,11 @@
 					<div class="col-md-6 col-lg-4 my-3 card--items">
 						<div class="card ">
 							<img src="${chart.photo}" class="card-img-top mx-auto" alt="" style="width: 200px;" />
-							<div class="card-header">${chart.ranking}위</div>
+							<div class="card-header d-flex">${chart.ranking}위
+								<button class="ml-auto"onclick="music_play('${chart.musicLink}')">▶</button>
+								<button onclick="music_stop('${chart.musicLink}')">ΙΙ</button>
+								<button onclick="music_replay('${chart.musicLink}')">■</button>
+							</div>
 							<div class="card-body">
 								<h5 class="card-title text-capitalize">${chart.title}</h5>
 								<p class="card-text">${chart.singer}</p>
@@ -54,38 +58,8 @@
 			</ul>
 		</div>
 	</div>
-	<iframe width="560" height="315" src="https://www.youtube.com/embed/W0M8kn_Ex-4
-	?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-		allowfullscreen=""></iframe>
 
-function page(num){
-
-	$.ajax({
-		type : 'GET',
-		url : '/api/melonchart/'+num,
-		dataType : 'json'
-	}).done(function(result) {
-		console.log(result)
-		$('.card--items').remove();
-		result.forEach(function(chart) {
-			$('#chart--title').append("<div class='col-md-6 col-lg-4 my-3 card--items'>"
-				+"<div class='card'>"
-			+"<img src='"
-			+chart.photo
-			+"' class='card-img-top mx-auto'style='width: 200px;''/><div class='card-header'>"
-			+chart.ranking
-			+"위</div><div class='card-body'><h5 class='card-title text-capitalize'>"
-			+chart.title
-			+"</h5><p class='card-text'>"
-			+chart.singer
-			+"</p></div></div></div>");
-		});
-	
-	}).fail(function(result) {
-
-		alert('서버오류');
-	});
-}
-</script>
+<div id="test"></div>
+<script src="/js/melonChart.js"></script>
 </body>
 </html>

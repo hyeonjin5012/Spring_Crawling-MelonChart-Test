@@ -10,7 +10,7 @@
 	
 	<insert id="save">
 		insert into melon(ranking,title,singer,photo,musicLink)
-		values(#{ranking},#{title},#{singer},#{photo},#{musicLink)
+		values(#{ranking},#{title},#{singer},#{photo},#{musicLink})
 	</insert>
 
 </mapper>
